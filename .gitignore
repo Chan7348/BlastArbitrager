@@ -89,3 +89,9 @@ artifacts
 .dynamodb/
 
 .vscode/
+
+cache_forge/
+
+out/
+
+ThrusterPool/

@@ -1,0 +1,9 @@
+forge-std/=lib/forge-std/src/
+contracts/mixins/=src/mixins/
+contracts/libraries/=src/libraries/
+contracts/CrocSwapDex.sol/=src/CrocSwapDex.sol/
+contracts/lens/=src/lens/
+contracts/CrocEvents.sol/=src/CrocEvents.sol/
+contracts/callpaths/=src/callpaths/
+contracts/interfaces/=src/interfaces/
+hardhat/=lib/hardhat/

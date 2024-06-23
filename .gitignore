@@ -95,3 +95,9 @@ cache_forge/
 out/
 
 ThrusterPool/
+
+ignition/
+
+typechain-types/
+
+package-lock.json

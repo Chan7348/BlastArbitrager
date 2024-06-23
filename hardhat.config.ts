@@ -1,6 +1,7 @@
 import { HardhatUserConfig, vars } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import "@nomicfoundation/hardhat-foundry";
+import "@nomicfoundation/hardhat-verify";
 const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.24",
@@ -62,7 +63,17 @@ const config: HardhatUserConfig = {
       optimisticEthereum: '79WNIY53FCZY116W61ZN8DDTE1THBBVKN7',
       base: 'TJY2CHMTQMI1HF4WVQJES2CDVF4K733CUK',
       blast : 'DSSX24X9RC6YEA2FVQBJ8DK79YGZXGWG43'
-    }
+    },
+    customChains: [
+      {
+        network: "blast",
+        chainId: 81457,
+        urls: {
+          apiURL: "https://api.routescan.io/v2/network/mainnet/evm/81457/etherscan",
+          browserURL: "https://blastexplorer.io"
+        }
+      }
+    ]
   },
   // dodoc: {
   //   runOnCompile: true,

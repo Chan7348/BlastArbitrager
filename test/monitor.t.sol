@@ -8,9 +8,12 @@ contract testMonitor is Test {
     Monitor monitor = new Monitor();
 
     function testPrice() public view {
-        console.log("thrusterPrice:", monitor.thrusterETHPriceWithPower(0, true));
-        console.log("ambientPrice: ", monitor.ambientETHPriceWithPower(0, false));
-        (uint thrusterPrice, uint ambientPrice) = monitor.ETHpricesWithPower(0);
-        console.log("two prices:", thrusterPrice, "\n", ambientPrice);
+        uint16 power = 18;
+        (uint thrusterPrice, uint thrusterNumber) = monitor.thrusterETHPriceWithPower(power, true);
+        (uint ambientPrice, uint ambientNumber) = monitor.ambientETHPriceWithPower(power, false);
+        console.log("thrusterPrice:", thrusterPrice, "at:", thrusterNumber);
+        console.log("ambientPrice: ", ambientPrice, "at:", ambientNumber);
+        (uint thrusterPrice1, uint ambientPrice1, uint blockNum) = monitor.ETHpricesWithPower(power);
+        console.log("two prices at:", blockNum, thrusterPrice1, ambientPrice1);
     }
 }

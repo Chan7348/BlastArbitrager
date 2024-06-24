@@ -1,11 +1,25 @@
+import { TypedContractMethod } from './../typechain-types/common';
 import { ethers } from "hardhat";
 
+// async function deploy() {
+//     const Monitor = await ethers.getContractFactory("Monitor");
+//     const monitor = await Monitor.deploy({gasLimit: 100_0000});
+//     console.log("Monitor deployed to:", await monitor.getAddress());
+
+// }
+
+// deploy().then(() => process.exit(0)).catch(error => {
+//     console.error(error);
+//     process.exit(1);
+// });
+
 async function main() {
-    const Monitor = await ethers.getContractAt("Monitor", "0x3B5e737444e81DbEae48d24948e77527f3e5e3C0");
-    const power = 12;
-    const [thrusterPriceInBigNumber, ambientPriceInBigNumber]= await Monitor.ETHpricesWithPower(power);
+    const Monitor = await ethers.getContractAt("Monitor", "0xe472C1a46B9AA4Dc3c2d1e5C28E78128305092c1");
+    const power = 4;
+    const [thrusterPriceInBigNumber, ambientPriceInBigNumber, blockNum]= await Monitor.ETHpricesWithPower(power);
     const thrusterPrice = ethers.toNumber(thrusterPriceInBigNumber) / 10 ** power;
     const ambientPrice = ethers.toNumber(ambientPriceInBigNumber) / 10 ** power;
+    console.log("blockNumber:", blockNum.toString());
     console.log("thrusterPrice:", thrusterPrice);
     console.log("ambientPrice: ", ambientPrice);
     const difference = thrusterPrice > ambientPrice ? thrusterPrice - ambientPrice : ambientPrice - thrusterPrice;
@@ -14,6 +28,7 @@ async function main() {
 
     console.log("difference:", difference);
     console.log("differencePercentage:", differencePercentage);
+    console.log("--------------------------------");
 
     // thruster500pool L 7596154 600091497988239201 price 3509
     // USDB 2453w 7858           869464870963990587

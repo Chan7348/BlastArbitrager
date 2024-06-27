@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.24;
 import { IThrusterPool } from "contracts/interfaces/thruster/IThrusterPool.sol";
-import { IERC20Metadata } from "@openzeppelin/contracts/interfaces/IERC20Metadata.sol";
+// import { IERC20Metadata } from "@openzeppelin/contracts/interfaces/IERC20Metadata.sol";
 import { ICrocQuery } from "contracts/interfaces/ambient/ICrocQuery.sol";
 // import { console } from "forge-std/console.sol";
 // import { Math } from "@openzeppelin/contracts/utils/math/Math.sol";
@@ -24,18 +24,18 @@ contract Monitor {
 
     // blast USDB
     address USDBaddr = 0x4300000000000000000000000000000000000003;
-    IERC20Metadata USDB;
+    // IERC20Metadata USDB;
 
     // blast WETH
     address WETHaddr = 0x4300000000000000000000000000000000000004;
-    IERC20Metadata WETH;
+    // IERC20Metadata WETH;
     
     address crocQueryAddr = 0xA3BD3bE19012De72190c885FB270beb93e36a8A7;
     ICrocQuery crocQuery;
 
     constructor() {
-        USDB = IERC20Metadata(USDBaddr);
-        WETH = IERC20Metadata(WETHaddr);
+        // USDB = IERC20Metadata(USDBaddr);
+        // WETH = IERC20Metadata(WETHaddr);
         // ezETH = IERC20Metadata(ezETHaddr);
         // thrusterPool3000 = IThrusterPool(thruster_WETH_USDB_V3_3000);
         thrusterPool500 = IThrusterPool(thruster_WETH_USDB_V3_500);
@@ -50,7 +50,7 @@ contract Monitor {
         // console.log("Decimals of token1 WETH:", WETH.decimals());
     }
     function ambientETHPriceWithPower(uint power, bool isQuoteToken) view public returns (uint256 price, uint256 blockNum) {
-        price = PriceConvert.Q64_64ToPriceWithPower(crocQuery.queryPrice(address(0), address(USDB), 420), isQuoteToken, power);
+        price = PriceConvert.Q64_64ToPriceWithPower(crocQuery.queryPrice(address(0), USDBaddr, 420), isQuoteToken, power);
         blockNum = block.number;
     }
     function ETHpricesWithPower(uint128 power) view public returns (uint256 thrusterPrice, uint256 ambientPrice, uint256 blockNum) {

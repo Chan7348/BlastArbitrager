@@ -15,7 +15,7 @@ import { ethers } from "hardhat";
 
 async function main() {
     const Monitor = await ethers.getContractAt("Monitor", "0xe472C1a46B9AA4Dc3c2d1e5C28E78128305092c1");
-    const power = 4;
+    const power = 12;
     const [thrusterPriceInBigNumber, ambientPriceInBigNumber, blockNum]= await Monitor.ETHpricesWithPower(power);
     const thrusterPrice = ethers.toNumber(thrusterPriceInBigNumber) / 10 ** power;
     const ambientPrice = ethers.toNumber(ambientPriceInBigNumber) / 10 ** power;
